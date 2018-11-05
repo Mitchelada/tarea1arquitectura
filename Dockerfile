@@ -1,11 +1,7 @@
-from python:2
-
-workdir /ribbit
-
-copy . /ribbit
-
-run pip install -r requeriments.txt
-run python manage.py syncdb --noinput
-run python manage.py migrate ribbit_app
-
-cmd python manage.py runserver 0:$PORT
+FROM python:2
+WORKDIR /ribbit
+COPY . /ribbit
+RUN pip install -r requeriments.txt
+RUN python manage.py syncdb --noinput
+RUN python manage.py migrate ribbit_app
+CMD python manage.py runserver 0:$PORT
